@@ -30,8 +30,39 @@ def p1(data):
 
     return score
 
+
 def p2(data):
-    
+    # X lose, Y draw, Z win
+
+    score = 0
+    for game in data.values():
+        option = game.split(" ")[1]
+        enemy = game.split(" ")[0]
+
+        if enemy == "A":
+            if option == "X":
+                score += 3
+            elif option == "Y":
+                score += 4
+            else:
+                score += 8
+        elif enemy == "B":
+            if option == "X":
+                score += 1
+            elif option == "Y":
+                score += 5
+            else:
+                score += 9
+        else:
+            if option == "X":
+                score += 2
+            elif option == "Y":
+                score += 6
+            else:
+                score += 7
+
+    return score
+
 
 if __name__ == "__main__":
     current_round = 1
@@ -40,7 +71,7 @@ if __name__ == "__main__":
         for line in file.readlines():
             data[current_round] = line.strip()
             current_round += 1
-    print(p1(data))
+    print(p2(data))
 else:
     raise BaseException
 
